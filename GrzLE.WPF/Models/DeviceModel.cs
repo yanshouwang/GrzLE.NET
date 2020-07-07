@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Devices.Bluetooth;
@@ -23,6 +24,15 @@ namespace GrzLE.WPF.Models
             Device = device;
             Advertisement = args.Advertisement;
             RSSI = args.RawSignalStrengthInDBm;
+        }
+
+        private DelegateCommand _connectCommand;
+        public DelegateCommand ConnectCommand
+            => _connectCommand ??= new DelegateCommand(ExecuteConnectCommand);
+
+        void ExecuteConnectCommand()
+        {
+
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="GrzLE.UWP.Views.DeviceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GrzLE.UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:fw="using:Prism.Windows.Mvvm"
+    xmlns:sys="using:System"
+    mc:Ignorable="d"
+    fw:ViewModelLocator.AutoWireViewModel="True"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Rectangle Stroke="DarkGray" StrokeThickness="1"/>
+            <StackPanel Margin="4">
+                <TextBlock FontFamily="Consolas" Text="{x:Bind sys:String.Format('VId : {0:X4}', ViewModel.Model.VId)}"/>
+                <TextBlock FontFamily="Consolas" Text="{x:Bind sys:String.Format('PId : {0:X4}', ViewModel.Model.PId)}"/>
+                <TextBlock FontFamily="Consolas" Text="{x:Bind sys:String.Format('MId : {0}', ViewModel.Model.MId)}"/>
+                <TextBlock FontFamily="Consolas" Text="{x:Bind sys:String.Format('MAC : {0}', ViewModel.Model.MAC)}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+                <Button Content="CONNECT" Command="{x:Bind ViewModel.Model.ConnectCommand}"/>
+                <Button Content="START" Margin="0,4,0,0" Command="{x:Bind ViewModel.Model.WriteCommand}" CommandParameter="DATA:LIVe:UPLoad:ECHO 1,5000"/>
+                <Button Content="END" Margin="0,4,0,0" Command="{x:Bind ViewModel.Model.WriteCommand}" CommandParameter="DATA:LIVe:UPLoad:ECHO 0"/>
+                <Button Content="DISCONNECT" Margin="0,4,0,0" Command="{x:Bind ViewModel.Model.DisconnectCommand}"/>
+                <Button Content="GO BACK" Margin="0,4,0,0" Command="{Binding GoBackCommand}"/>
+            </StackPanel>
+        </Grid>
+        <ListView Grid.Column="2" ItemsSource="{x:Bind ViewModel.Model.Logs}" BorderBrush="DarkGray" BorderThickness="1"/>
+    </Grid>
+</Page>

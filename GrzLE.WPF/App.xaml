@@ -6,12 +6,18 @@
     <Application.Resources>
         <Style TargetType="ListView">
             <Style.Setters>
-                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="0.5"/>
             </Style.Setters>
         </Style>
         <Style TargetType="TextBlock">
             <Style.Setters>
                 <Setter Property="FontFamily" Value="Consolas"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Window">
+            <Style.Setters>
+                <Setter Property="Padding" Value="12"/>
             </Style.Setters>
         </Style>
     </Application.Resources>

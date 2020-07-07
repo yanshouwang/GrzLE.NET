@@ -1,4 +1,5 @@
 ﻿using GrzLE.WPF.Models;
+using GrzLE.WPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,8 @@ namespace GrzLE.WPF.ViewModels
 
         public IList<DeviceModel> Devices { get; }
 
-        public AdapterViewModel()
+        public AdapterViewModel(INavigationService navigationService)
+            : base(navigationService)
         {
             _watcher = new BluetoothLEAdvertisementWatcher();
             _watcher.Received += OnReceived;
